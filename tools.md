@@ -2,7 +2,7 @@
 
 **Notice Regarding Use of This Table and Associated Tools**
 
-The information provided in this table is intended solely for educational and informational purposes. The inclusion of any specific tools, technologies, or methodologies does not constitute an endorsement or recommendation by the authors or OWASP. Users are advised that:
+The information provided in this table is intended solely for educational and informational purposes. The inclusion of any specific tools, technologies, or methodologies does not constitute an endorsement or recommendation by the author or OWASP. Users are advised that:
 
 - **No Endorsement or Warranty**: We do not endorse, guarantee, or warrant the accuracy, completeness, or usefulness of any tool, technology, or information presented. All items are provided "as is" without any representations or warranties, express or implied.
 
