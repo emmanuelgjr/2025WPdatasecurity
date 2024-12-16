@@ -9,6 +9,15 @@ flowchart TD
     classDef risks fill:#F8D7DA,stroke:#DC3545,stroke-width:2px;
     classDef mitigations fill:#CCE5FF,stroke:#007BFF,stroke-width:2px;
 
+    %% Subgraph for Labels
+    subgraph Color Coding Labels
+        legend1[**Orange**: Data Sources]:::dataSources
+        legend2[**Yellow**: Training Processes]:::training
+        legend3[**Green**: Inference Systems and Pipelines]:::inference
+        legend4[**Red**: Vulnerable Points and Risks]:::risks
+        legend5[**Blue**: Monitoring and Mitigation Strategies]:::mitigations
+    end
+
     %% Data Sources
     A[Training Data Sources]:::dataSources
     A1[Structured Data]:::dataSources --> A
