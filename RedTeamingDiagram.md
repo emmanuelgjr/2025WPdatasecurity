@@ -53,3 +53,12 @@ flowchart TD
     class F,G inference;
     class H,I,J,K,L,M risks;
     class N,O,P mitigations;
+
+
+# Color Coding:
+
+**Orange ({data Sources}):** For data sources.
+**Yellow ({training}):** For training processes.
+**Green ({inference}):** For inference systems and pipelines.
+**Red ({risks}):** For vulnerable points and risks.
+**Blue ({mitigations}):** For monitoring and mitigation strategies.
