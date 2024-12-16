@@ -27,7 +27,7 @@ flowchart TD
 
     %% Agentic Application Flow
     B -->|Deployed in| C[LLM Agents\nReasoning & Decision-Making]:::agent
-    C -->|Data Retrieval| D[External Data Sources:\nAPIs and Databases]:::dataSources
+    C -->|Data Retrieval| D[External Data Sources:APIs and Databases]:::dataSources
     C -->|Decision Outputs| E[Actions via Tools and APIs]:::agent
     D -->|Retrieved Context| C
     E -->|Feedback| F[Model Updates\nor Fine-Tuning]:::inference
