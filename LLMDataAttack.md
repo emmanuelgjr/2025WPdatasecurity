@@ -31,7 +31,6 @@ flowchart LR
         L4[Red: Vulnerabilities]:::risks
         L5[Blue: Mitigations]:::mitigations
         L6[Grey: Kill Chain & Tools]:::killchain
-        Note[Edge Colors:\nBlue=Dataflow\nRed=Attacks\nGreen=Controls\nPurple=Monitoring\nGrey=Kill Chain]
     end
 
     %% Data and Training
