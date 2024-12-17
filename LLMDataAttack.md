@@ -18,9 +18,9 @@ flowchart TD
         legend1[Orange: Data Sources]:::dataSources
         legend2[Yellow: Training Processes]:::training
         legend3[Green: Inference Systems]:::inference
-        legend4[Red: Vulnerabilities & Risks]:::risks
-        legend5[Blue: Mitigations & Controls]:::mitigations
-        legend6[Grey: Attack Steps (Kill Chain), Red Team Tools, Governance]:::killchain
+        legend4[Red: Vulnerabilities and Risks]:::risks
+        legend5[Blue: Mitigations and Controls]:::mitigations
+        legend6[Grey: Attack Steps, Kill Chain, Red Team Tools, Governance]:::killchain
     end
 
     %% Data Sources
@@ -54,18 +54,18 @@ flowchart TD
     C -->|Malicious Source Injection| M[Supply Chain Risks]:::risks
 
     %% Mitigations & Controls
-    subgraph Defensive_Layer[Defensive & Governance Layers]
+    subgraph Defensive_Layer[Defensive and Governance Layers]
         O[Content Filters, RLHF, Toxicity Checks]:::mitigations --> F
-        P[Data Validation & Sanitization]:::mitigations --> C
+        P[Data Validation and Sanitization]:::mitigations --> C
         Q[Adversarial Detection Models]:::mitigations --> F
         R[Secure Proxy Layers]:::mitigations --> F
-        S[Compliance & Audit Checks]:::mitigations --> D
+        S[Compliance and Audit Checks]:::mitigations --> D
         T[Model Hardening: Differential Privacy, Watermarking]:::mitigations --> D
-        V[Rollback & Disaster Recovery]:::mitigations --> E
+        V[Rollback and Disaster Recovery]:::mitigations --> E
     end
 
     %% Monitoring & Feedback
-    subgraph Monitoring_Feedback[Monitoring, SIEM/SOAR & Feedback]
+    subgraph Monitoring_Feedback[Monitoring, SIEM/SOAR, Feedback]
         N[Monitoring Tools: SIEM, Dashboards]:::mitigations --> F
         N -->|Retraining Updates| B
         U[Human Review: Security Analysts]:::mitigations --> F
@@ -74,7 +74,7 @@ flowchart TD
 
     %% Red Team Operations
     subgraph Red_Team_Operations_Center[Red Team Operations Center]
-        X[Red Team Playbooks & Threat Intel]:::controlCenter
+        X[Red Team Playbooks and Threat Intel]:::controlCenter
         X -->|Simulation| D1
         X -->|Reports Findings| U
     end
