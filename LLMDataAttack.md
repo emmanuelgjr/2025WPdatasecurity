@@ -1,4 +1,4 @@
-# LLM Red Teaming Data Flow Diagram
+# LLM Red Teaming Data Attack Flow Diagram - Kill Chain
 
 ```mermaid
 flowchart TD
@@ -32,99 +32,97 @@ flowchart TD
     A -->|Raw Inputs| C[External Data Sources]:::dataSources
 
     %% Training Pipeline
-    B -->|Processed for Training| D[LLM Training Pipeline\n(Tokenization, Embeddings, Fine-tuning)]:::training
+    B -->|Processed for Training| D[LLM Training Pipeline]:::training
     C -->|Knowledge Retrieval| D
     D -->|Weights & Parameters| E[LLM Model Weights]:::training
 
-    %% Evaluation (Red Teaming)
-    D -->|Adversarial Testing| D1[Red Team Tools & Evaluation:\nBackdoor Insertion, Data Poisoning, Trojaning]:::redTeamTools
+    %% Red Team Adversarial Testing
+    D -->|Adversarial Testing| D1[Red Team Tools: Backdoor insertion, data poisoning, trojaning]:::redTeamTools
     D1 -->|Validation & Hardening| E
 
     %% Deployment & Inference
-    E -->|Deployed| F[Inference API:\nChat Interface, Model Serving]:::inference
-    E -->|Integrated| G[RAG Pipelines\n(Retrieval-Augmented Generation)]:::inference
+    E -->|Deployed| F[Inference API: Chat Interface]:::inference
+    E -->|Integrated| G[RAG Pipelines]:::inference
     G -->|Queries| C
 
-    %% Vulnerabilities & Risks
+    %% Vulnerabilities
     B -->|Poisoning Attacks| H[Training Data Risks]:::risks
-    D -->|Parameter Extraction, Memorization| I[Model Training Vulnerabilities]:::risks
+    D -->|Parameter Extraction| I[Model Training Vulnerabilities]:::risks
     G -->|Context Manipulation| J[RAG Pipeline Exploits]:::risks
-    F -->|Prompt Injection, Jailbreaks| K[Inference Attacks]:::risks
+    F -->|Prompt Injection| K[Inference Attacks]:::risks
     F -->|Sensitive Data Leakage| L[Data Exfiltration]:::risks
-    C -->|Malicious Inputs| M[Supply Chain & External Data Injection]:::risks
+    C -->|Malicious Source Injection| M[Supply Chain Risks]:::risks
 
     %% Mitigations & Controls
     subgraph Defensive_Layer[Defensive & Governance Layers]
-        O[Content Filters & Policy Enforcement:\nRLHF, Toxicity/Bias Filters]:::mitigations --> F
-        P[Data Validation & Sanitization:\nSchema Checks, Source Vetting]:::mitigations --> C
-        Q[Adversarial Detection Models:\nAnomaly Detection]:::mitigations --> F
-        R[Secure Proxy Layers:\nInput Sanitization]:::mitigations --> F
-        S[Compliance & Audit Checks:\nGDPR, CCPA]:::mitigations --> D
-        T[Model Hardening:\nDifferential Privacy, Watermarking]:::mitigations --> D
-        V[Rollback & Recovery:\nVersion Control]:::mitigations --> E
+        O[Content Filters, RLHF, Toxicity Checks]:::mitigations --> F
+        P[Data Validation & Sanitization]:::mitigations --> C
+        Q[Adversarial Detection Models]:::mitigations --> F
+        R[Secure Proxy Layers]:::mitigations --> F
+        S[Compliance & Audit Checks]:::mitigations --> D
+        T[Model Hardening: Differential Privacy, Watermarking]:::mitigations --> D
+        V[Rollback & Disaster Recovery]:::mitigations --> E
     end
 
     %% Monitoring & Feedback
     subgraph Monitoring_Feedback[Monitoring, SIEM/SOAR & Feedback]
-        N[Monitoring Tools:\nSIEM/SOAR, Metrics Dashboards]:::mitigations --> F
-        N -->|Feedback for Retraining| B
-        U[Human-in-the-Loop Review:\nSecurity Analysts]:::mitigations --> F
+        N[Monitoring Tools: SIEM, Dashboards]:::mitigations --> F
+        N -->|Retraining Updates| B
+        U[Human Review: Security Analysts]:::mitigations --> F
         U -->|Policy & Model Updates| D
     end
 
     %% Red Team Operations
     subgraph Red_Team_Operations_Center[Red Team Operations Center]
-        X[Red Team Playbooks & SOPs:\nMITRE ATLAS, Threat Intel]:::controlCenter
-        X -->|Controlled Simulation| D1
-        X -->|Findings & Reports| U
+        X[Red Team Playbooks & Threat Intel]:::controlCenter
+        X -->|Simulation| D1
+        X -->|Reports Findings| U
     end
 
     %% Sandbox Environment
-    subgraph Secure_Sandbox[Safe Testing & Simulation Environment]
-        Y[Isolated Sandbox:\nReplay Attacks, Test Patches]:::controlCenter
-        Y -->|Refine Detection & Controls| D
-        Y -->|Validate Red Team Methods| D1
+    subgraph Secure_Sandbox[Safe Testing Environment]
+        Y[Isolated Sandbox: Test attacks & patches]:::controlCenter
+        Y -->|Refine Controls| D
+        Y -->|Validate RT Methods| D1
     end
 
-    %% Threat Actor Personas
+    %% Threat Actors
     subgraph Threat_Actors[Threat Actor Personas]
-        TA1[Insider Threat:\nCan Poison Training Data]:::governance
-        TA2[Advanced APT:\nRAG Exploits, Extraction Attacks]:::governance
-        TA3[Script Kiddies:\nSimple Prompt Injection]:::governance
+        TA1[Insider Threats]:::governance
+        TA2[Advanced APT Groups]:::governance
+        TA3[Script Kiddies]:::governance
     end
-
     TA1 -.-> B
     TA2 -.-> I
     TA3 -.-> K
 
     %% Kill Chain
     subgraph Kill_Chain[Lockheed Martin Cyber Kill Chain]
-        R1[Reconnaissance:\nIdentify Data, Pipeline]:::killchain
-        R2[Weaponization:\nCraft Poisoned Data, Prompts]:::killchain
-        R3[Delivery:\nInject Malicious Data]:::killchain
-        R4[Exploitation:\nPrompt Injection, RAG Manipulation]:::killchain
-        R5[Installation:\nBackdoor in Model Weights]:::killchain
-        R6[Command & Control:\nInteract via Queries]:::killchain
-        R7[Actions on Objectives:\nData Exfiltration, Misinformation]:::killchain
+        R1[Reconnaissance]:::killchain
+        R2[Weaponization]:::killchain
+        R3[Delivery]:::killchain
+        R4[Exploitation]:::killchain
+        R5[Installation]:::killchain
+        R6[Command & Control]:::killchain
+        R7[Actions on Objectives]:::killchain
     end
 
     R1 --> R2 --> R3 --> R4 --> R5 --> R6 --> R7
 
-    %% Map Vulnerabilities to Kill Chain
-    A -.Used in Recon-.-> R1
-    B -.Data Poisoning-> R2
-    C -.Malicious Delivery-> R3
-    K -.Prompt Injection-> R4
-    H -.Model Backdoors-> R5
-    F -.C2 via Queries-> R6
-    L -.Data Exfiltration-> R7
+    A -.-> R1
+    B -.-> R2
+    C -.-> R3
+    K -.-> R4
+    H -.-> R5
+    F -.-> R6
+    L -.-> R7
 
-    %% Red Team Tools Extended
+    %% Extended Red Team Tools
     subgraph Extended_Red_Team_Tools[Red Team Tools & Frameworks]
-        RT1[Model Poisoning Kits:\nTrojaning LMs]:::redTeamTools --> H
-        RT2[Adversarial Prompt Suites:\nTextFooler, Polyjuice]:::redTeamTools --> K
-        RT3[Parameter Extraction Tools:\nEmbedding Extractors]:::redTeamTools --> I
-        RT4[RAG Injection Tools:\nFake Doc Injection]:::redTeamTools --> J
-        RT5[Telemetry Tampering:\nHide Attack Traces]:::redTeamTools
+        RT1[Model Poisoning Kits]:::redTeamTools --> H
+        RT2[Adversarial Prompt Suites]:::redTeamTools --> K
+        RT3[Parameter Extraction Tools]:::redTeamTools --> I
+        RT4[RAG Context Injection Tools]:::redTeamTools --> J
+        RT5[Telemetry Tampering Tools]:::redTeamTools
         RT5 -.-> N
     end
