@@ -21,76 +21,76 @@ flowchart LR
         L3[Green: Inference]:::inference
         L4[Red: Vulnerabilities]:::risks
         L5[Blue: Mitigations]:::mitigations
-        L6[Grey: Kill Chain & Tools]:::killchain
+        L6[Grey: Kill Chain and Tools]:::killchain
     end
 
-    %% Data Sources & Training (Left Side)
+    %% Data and Training
     subgraph Data_and_Training
     direction LR
         A[Training Data Sources]:::dataSources
         A1[Structured Data]:::dataSources
         A2[Unstructured Data]:::dataSources
-        A3[Sensitive/Internal Data]:::dataSources
+        A3[Sensitive Internal Data]:::dataSources
         A1-->A
         A2-->A
         A3-->A
 
         B[Preprocessed Training Data]:::training
-        A-->|Collect & Clean|B
+        A-->B
         C[External Data Sources]:::dataSources
         C-->B
 
         D[LLM Training Pipeline]:::training
         B-->D
-        C-->|Knowledge Retrieval|D
+        C-->D
         E[LLM Model Weights]:::training
         D-->E
     end
 
-    %% Adversarial Evaluation (Red Team)
+    %% Red Team Evaluation
     subgraph Red_Team_Evaluation
     direction LR
-        D1[Red Team Testing: Backdoors, Trojaning]:::redTeamTools
-        D-->|Adversarial Testing|D1
-        D1-->|Feedback & Hardening|E
+        D1[Red Team Testing Backdoor Trojaning]:::redTeamTools
+        D-->D1
+        D1-->E
     end
 
-    %% Deployment & Inference (Right Side)
+    %% Deployment and Inference
     subgraph Deployment_and_Inference
     direction LR
-        E-->F[Inference API]:::inference
+        E-->F[Inference API Chat Interface]:::inference
         E-->G[RAG Pipelines]:::inference
         G-->C
     end
 
-    %% Vulnerabilities Underneath
+    %% Vulnerabilities
     subgraph Vulnerabilities
     direction LR
         H[Training Data Poisoning]:::risks
         I[Parameter Extraction]:::risks
         J[RAG Context Manipulation]:::risks
         K[Prompt Injection]:::risks
-        L[Data Leakage (Outputs)]:::risks
+        L[Data Leakage Outputs]:::risks
         M[Supply Chain Attacks]:::risks
 
-        B-->|Poisoning|H
-        D-->|Extraction|I
-        G-->|Context Exploit|J
-        F-->|Jailbreak/Injection|K
-        F-->|Sensitive Data Exfil|L
-        C-->|Malicious Feeds|M
+        B-->H
+        D-->I
+        G-->J
+        F-->K
+        F-->L
+        C-->M
     end
 
-    %% Mitigations & Defensive Controls
+    %% Mitigations and Controls
     subgraph Mitigations_and_Controls
     direction LR
-        O[Content Filters (RLHF)]:::mitigations
+        O[Content Filters RLHF Toxicity]:::mitigations
         P[Data Validation]:::mitigations
         Q[Adversarial Detection]:::mitigations
         R[Secure Proxy Layers]:::mitigations
-        S[Compliance & Audits]:::mitigations
-        T[Model Hardening (Privacy, Watermark)]:::mitigations
-        V[Rollback & Recovery]:::mitigations
+        S[Compliance and Audits]:::mitigations
+        T[Model Hardening Watermark]:::mitigations
+        V[Rollback and Recovery]:::mitigations
 
         O-->F
         P-->C
@@ -101,31 +101,30 @@ flowchart LR
         V-->E
     end
 
-    %% Monitoring & Feedback
+    %% Monitoring and Feedback
     subgraph Monitoring_and_Feedback
     direction LR
-        N[Monitoring (SIEM, Dashboards)]:::mitigations
-        U[Human Review (Security Analysts)]:::mitigations
+        N[Monitoring SIEM Dashboards]:::mitigations
+        U[Human Review Analysts]:::mitigations
         N-->F
-        N-->|Retrain|B
+        N-->B
         U-->F
-        U-->|Policy Update|D
+        U-->D
     end
 
-    %% Red Team Ops Center & Sandbox
+    %% Red Team Operations
     subgraph Red_Team_Operations
     direction LR
-        X[Red Team Playbooks & Intel]:::controlCenter
-        Y[Isolated Sandbox]:::controlCenter
+        X[Red Team Playbooks Intel]:::controlCenter
+        Y[Isolated Sandbox Testing]:::controlCenter
 
-        X-->|Simulate Attacks|D1
-        X-->|Report Findings|U
-
-        Y-->|Test Controls|D
-        Y-->|Validate Methods|D1
+        X-->D1
+        X-->U
+        Y-->D
+        Y-->D1
     end
 
-    %% Threat Actors & Kill Chain
+    %% Threat Actors
     subgraph Threat_Actors
     direction LR
         TA1[Insider Threat]:::governance
@@ -137,6 +136,7 @@ flowchart LR
     TA2-.->I
     TA3-.->K
 
+    %% Kill Chain
     subgraph Kill_Chain
     direction LR
         R1[Recon]:::killchain
@@ -144,19 +144,19 @@ flowchart LR
         R3[Delivery]:::killchain
         R4[Exploitation]:::killchain
         R5[Installation]:::killchain
-        R6[Command & Control]:::killchain
+        R6[Command and Control]:::killchain
         R7[Actions]:::killchain
-
-        R1-->R2-->R3-->R4-->R5-->R6-->R7
-
-        A-.->R1
-        B-.->R2
-        C-.->R3
-        K-.->R4
-        H-.->R5
-        F-.->R6
-        L-.->R7
     end
+
+    R1-->R2-->R3-->R4-->R5-->R6-->R7
+
+    A-.->R1
+    B-.->R2
+    C-.->R3
+    K-.->R4
+    H-.->R5
+    F-.->R6
+    L-.->R7
 
     %% Extended Tools
     subgraph Extended_Tools
@@ -165,6 +165,6 @@ flowchart LR
         RT2[Prompt Attack Suites]:::redTeamTools-->K
         RT3[Extraction Tools]:::redTeamTools-->I
         RT4[RAG Injection Tools]:::redTeamTools-->J
-        RT5[Telemetry Tampering]:::redTeamTools
+        RT5[Telemetry Tampering Tools]:::redTeamTools
         RT5-.->N
     end
