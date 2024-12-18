@@ -22,7 +22,6 @@ L3[Green = Inference Steps]:::inference
 L4[Red = Vulnerabilities]:::risks
 L5[Blue = Mitigations]:::mitigations
 L6[Grey = Kill Chain, Actors, Tools]:::killchain
-Note[Top row: Threat Actors, Vulnerabilities\nMiddle: Data→Training→Inference→RAG→External\nBottom: Mitigations, Kill Chain\nLeft to right flow, vertical lines to connect]
 end
 
 %% Pipeline (Center row)
