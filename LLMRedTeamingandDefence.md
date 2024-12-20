@@ -2,9 +2,9 @@
 
 ## Table of Contents
 - [Overview](#overview)
-- [Expanded Table](#expanded-table)
+- [Table](#table)
   - [Column Descriptions](#column-descriptions)
-- [Deeper Insight into Tools](#deeper-insight-into-tools)
+- [Insight into Tools](#insight-into-tools)
 - [Summary of Tools for Training and Use-Cases](#summary-of-tools-for-training-and-use-cases)
 
 ---
@@ -12,16 +12,16 @@
 ## Overview
 
 This repository provides a comprehensive guide for red teaming and defending Large Language Models (LLMs). It includes:
-- A fully expanded table mapping each phase of the attack to the **Lockheed Martin Kill Chain** and **OWASP Top 10 for LLM 2025**.
+- A table mapping each attack phase to the **Lockheed Martin Kill Chain** and **OWASP Top 10 for LLM 2025**.
 - Detailed insights into tools for adversarial testing and mitigation.
 - Practical use cases for both red teamers and defenders.
 
 ---
 
-## Expanded Table
+## Table
 
 ### Column Descriptions:
-- **Kill Chain Phase**: The attack stage in the Lockheed Martin Kill Chain.
+- **Kill Chain Phase**: The Lockheed Martin Kill Chain attack stage.
 - **Methods**: Techniques used by attackers at this phase.
 - **OWASP Top 10 for LLM 2025**: Relevant OWASP vulnerability category for LLMs.
 - **Red Team Objectives**: Goals attackers aim to achieve at this stage.
