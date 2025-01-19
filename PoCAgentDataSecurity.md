@@ -1,4 +1,3 @@
-```markdown
 # LLM Security Risks: PoCs, Explanations, and Mitigations
 
 Below is a set of Proof-of-Concept (PoC) scenarios for various security risks in LLM-driven agents. The content is structured to highlight:
